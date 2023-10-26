@@ -13,7 +13,23 @@ namespace TrainExample_Ado.Net_CRUD_.Services
                 connect.ConnectionString = connectionString ;
                 connect.Open();
 
-                string creatTableQuery=@"Create Table "
+                string creatTableQuery = @"CREATE TABLE Xodim (
+                                        Id  int IDENTITY(1,1),
+                                        Name varchar(255),
+                                        Surname varchar(255),
+                                        Email varchar(255),
+                                        Login varchar(255),
+                                        Password VARCHAR(50),
+                                        Status VARCHAR(50),
+                                        Role VARCHAR(50),
+                                        CreatedDate DATETIME DEFAULT GETDATE(),
+                                        ModifyDate Text DEFAULT NULL,
+                                        DeletedDate Text DEFAULT NULL
+                                    );";
+
+                SqlCommand cmd=new SqlCommand(creatTableQuery,connect);
+                cmd.ExecuteNonQuery();
+                Console.WriteLine("Succesfully table created");
             }
         }
 
@@ -38,6 +54,11 @@ namespace TrainExample_Ado.Net_CRUD_.Services
         }
 
         public void GetById()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void InserEmployee()
         {
             throw new NotImplementedException();
         }
