@@ -8,5 +8,6 @@
         public void EmployeeDeepDelete();
         public void GetAll();
         public void GetById();
+        public void InserEmployee();
     }
 }
