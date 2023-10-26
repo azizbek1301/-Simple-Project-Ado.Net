@@ -2,7 +2,7 @@
 {
     public interface IEmployeeRepo
     {
-        public void EmployeeCreated();
+        public  void EmployeeCreated();
         public void EmployeeDelete();
         public void EmployeeUpdate();
         public void EmployeeDeepDelete();
