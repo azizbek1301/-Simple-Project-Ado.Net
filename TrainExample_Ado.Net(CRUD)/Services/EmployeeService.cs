@@ -3,17 +3,18 @@ using TrainExample_Ado.Net_CRUD_.EmployeeDto;
 using TrainExample_Ado.Net_CRUD_.Enum;
 using TrainExample_Ado.Net_CRUD_.Interfaces;
 using TrainExample_Ado.Net_CRUD_.Model;
+using static System.Net.WebRequestMethods;
 
 namespace TrainExample_Ado.Net_CRUD_.Services
 {
     public class EmployeeService : IEmployeeRepo
     {
-        public  void EmployeeCreated()
+        public void EmployeeCreated()
         {
-            using(SqlConnection connect=new SqlConnection())
+            using (SqlConnection connect = new SqlConnection())
             {
-                string connectionString= $"Server = (localdb)\\MSSQLLocalDB; Database =Ishxona; Trusted_Connection = True;";
-                connect.ConnectionString = connectionString ;
+                string connectionString = $"Server = (localdb)\\MSSQLLocalDB; Database =Ishxona; Trusted_Connection = True;";
+                connect.ConnectionString = connectionString;
                 connect.Open();
 
                 string creatTableQuery = @"CREATE TABLE Xodim (
@@ -30,7 +31,7 @@ namespace TrainExample_Ado.Net_CRUD_.Services
                                         DeletedDate Text DEFAULT NULL
                                     );";
 
-                SqlCommand cmd=new SqlCommand(creatTableQuery,connect);
+                SqlCommand cmd = new SqlCommand(creatTableQuery, connect);
                 cmd.ExecuteNonQuery();
                 Console.WriteLine("Succesfully table created");
             }
@@ -62,17 +63,17 @@ namespace TrainExample_Ado.Net_CRUD_.Services
                 connect.ConnectionString = connectionString;
                 connect.Open();
                 string query = $"Update Xodim set Status='{Status.Deleted}',Deleteddate='{DateTime.UtcNow}' where Id={EmployeeId} and Status <> 'Deleted';";
-                SqlCommand command=new SqlCommand(query,connect);
-                using(SqlDataReader reader = command.ExecuteReader())
+                SqlCommand command = new SqlCommand(query, connect);
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
                     Console.WriteLine("O'chirildi");
                 }
-                
-                
+
+
             }
         }
 
-        public void EmployeeUpdate(int EmployeeId,Employeedto employee)
+        public void EmployeeUpdate(int EmployeeId, Employeedto employee)
         {
             using (SqlConnection connect = new SqlConnection())
             {
@@ -91,7 +92,29 @@ namespace TrainExample_Ado.Net_CRUD_.Services
 
         public void GetAll()
         {
-            throw new NotImplementedException();
+            using (SqlConnection connect = new SqlConnection())
+            {
+                string connectionString = $"Server = (localdb)\\MSSQLLocalDB; Database =Ishxona; Trusted_Connection = True;";
+                connect.ConnectionString = connectionString;
+                connect.Open();
+                string query = $"Select * from Xodim where Status <>'Deleted';";
+                SqlCommand command = new SqlCommand(query, connect);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    var result = false;
+                    while(reader.Read())
+                    {
+                        result= true;
+                        Console.WriteLine($"{reader["Id"]} {reader["Name"]} {reader["Surname"]} {reader["Email"]} {reader["Login"]} {reader["Password"]} {reader["Status"]} {reader["Id"]} {reader["CreatedDate"]} {reader["ModifyDate"]} {reader["DeletedDate"]}");
+                    }
+                    if(result==false)
+                    {
+                        Console.WriteLine("Bunday ma'lumot yo'q");
+                    }
+                }
+
+
+            }
         }
 
         public void GetById()
@@ -115,18 +138,18 @@ namespace TrainExample_Ado.Net_CRUD_.Services
 
                 try
                 {
-                    using(SqlDataReader reader=cmd.ExecuteReader())
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
 
                     }
-                     Console.WriteLine("Insert Data in Table");
+                    Console.WriteLine("Insert Data in Table");
 
                 }
                 catch
                 {
                     Console.WriteLine("Bu ma'lumot avvaldan bor");
                 }
-                
+
             }
         }
     }
