@@ -9,7 +9,7 @@ namespace TrainExample_Ado.Net_CRUD_.Interfaces
         void EmployeeUpdate(int EmployeeId, Employeedto employee);
         void EmployeeDeepDelete(int EmployeeId);
         void GetAll();
-        void GetById();
+        void GetById(int EmployeeId);
         void InsertEmployee(Employeedto employeedto);
     }
 }

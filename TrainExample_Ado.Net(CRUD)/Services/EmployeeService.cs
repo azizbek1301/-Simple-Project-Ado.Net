@@ -117,9 +117,31 @@ namespace TrainExample_Ado.Net_CRUD_.Services
             }
         }
 
-        public void GetById()
+        public void GetById(int EmployeeId)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connect = new SqlConnection())
+            {
+                string connectionString = $"Server = (localdb)\\MSSQLLocalDB; Database =Ishxona; Trusted_Connection = True;";
+                connect.ConnectionString = connectionString;
+                connect.Open();
+                string query = $"Select * from Xodim where Id={EmployeeId} and Status <>'Deleted';";
+                SqlCommand command = new SqlCommand(query, connect);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    var result = false;
+                    while (reader.Read())
+                    {
+                        result = true;
+                        Console.WriteLine($"{reader["Id"]} {reader["Name"]} {reader["Surname"]} {reader["Email"]} {reader["Login"]} {reader["Password"]} {reader["Status"]} {reader["Id"]} {reader["CreatedDate"]} {reader["ModifyDate"]} {reader["DeletedDate"]}");
+                    }
+                    if (result == false)
+                    {
+                        Console.WriteLine("Bunday ma'lumot yo'q");
+                    }
+                }
+
+
+            }
         }
 
         public void InsertEmployee(Employeedto employeedto)

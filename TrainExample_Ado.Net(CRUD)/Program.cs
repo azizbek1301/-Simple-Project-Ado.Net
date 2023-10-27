@@ -17,3 +17,6 @@ info.Role=Role.Programmer;
 
 //employeeService.EmployeeDeepDelete(2);
 
+//employeeService.GetAll();
+
+//employeeService.GetById(1);
