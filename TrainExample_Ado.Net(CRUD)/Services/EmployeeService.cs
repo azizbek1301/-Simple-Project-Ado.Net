@@ -42,7 +42,20 @@ namespace TrainExample_Ado.Net_CRUD_.Services
 
         public void EmployeeDelete(int EmployeeId)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connect = new SqlConnection())
+            {
+                string connectionString = $"Server = (localdb)\\MSSQLLocalDB; Database =Ishxona; Trusted_Connection = True;";
+                connect.ConnectionString = connectionString;
+                connect.Open();
+                string query = $"Update Xodim set Status='{Status.Deleted}',Deleteddate='{DateTime.UtcNow}' where Id={EmployeeId} and Status <> 'Deleted';";
+                SqlCommand command=new SqlCommand(query,connect);
+                using(SqlDataReader reader = command.ExecuteReader())
+                {
+                    Console.WriteLine("Uchirildi");
+                }
+                
+                
+            }
         }
 
         public void EmployeeUpdate()
