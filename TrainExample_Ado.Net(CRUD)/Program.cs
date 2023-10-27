@@ -4,12 +4,14 @@ using TrainExample_Ado.Net_CRUD_.Services;
 
 EmployeeService employeeService = new EmployeeService();
 Employeedto info=new Employeedto();
-info.Name = "Ali";
-info.Surname = "Valiyev";
-info.Email = "ali@gmail.com";
-info.Login = "alivali";
-info.Password = "ali7";
-info.Role=Role.Admin;
+info.Name = "Azizbek";
+info.Surname = "Rahmatullayev";
+info.Email = "azizbek@gmail.com";
+info.Login = "azizbek";
+info.Password = "azizbek7";
+info.Role=Role.Programmer;
 //employeeService.EmployeeCreated();
-employeeService.InsertEmployee(info);
+//employeeService.InsertEmployee(info);
+//employeeService.EmployeeDelete(2);
+//employeeService.EmployeeUpdate(1,info);
 

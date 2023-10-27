@@ -6,7 +6,7 @@ namespace TrainExample_Ado.Net_CRUD_.Interfaces
     {
         void EmployeeCreated();
         void EmployeeDelete(int EmployeeId);
-        void EmployeeUpdate();
+        void EmployeeUpdate(int EmployeeId, Employeedto employee);
         void EmployeeDeepDelete();
         void GetAll();
         void GetById();

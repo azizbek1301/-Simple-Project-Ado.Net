@@ -2,6 +2,7 @@
 using TrainExample_Ado.Net_CRUD_.EmployeeDto;
 using TrainExample_Ado.Net_CRUD_.Enum;
 using TrainExample_Ado.Net_CRUD_.Interfaces;
+using TrainExample_Ado.Net_CRUD_.Model;
 
 namespace TrainExample_Ado.Net_CRUD_.Services
 {
@@ -51,16 +52,28 @@ namespace TrainExample_Ado.Net_CRUD_.Services
                 SqlCommand command=new SqlCommand(query,connect);
                 using(SqlDataReader reader = command.ExecuteReader())
                 {
-                    Console.WriteLine("Uchirildi");
+                    Console.WriteLine("O'chirildi");
                 }
                 
                 
             }
         }
 
-        public void EmployeeUpdate()
+        public void EmployeeUpdate(int EmployeeId,Employeedto employee)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connect = new SqlConnection())
+            {
+                string connectionString = $"Server = (localdb)\\MSSQLLocalDB; Database =Ishxona; Trusted_Connection = True;";
+                connect.ConnectionString = connectionString;
+                connect.Open();
+                string query = $"Update Xodim set Name='{employee.Name}',Surname='{employee.Surname}',Email='{employee.Email}',Login='{employee.Login}',Password='{employee.Password}',Status='{Status.Updated}',Role='{employee.Role}',ModifyDate='{DateTime.Now}' where Id={EmployeeId} and Status <> 'Deleted';";
+
+                SqlCommand command = new SqlCommand(query, connect);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    Console.WriteLine("Updated");
+                }
+            }
         }
 
         public void GetAll()
