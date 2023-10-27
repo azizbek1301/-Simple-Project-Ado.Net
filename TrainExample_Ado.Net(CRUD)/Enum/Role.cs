@@ -13,6 +13,6 @@
         Founder,
         GlavniyDirector,
         Security,
-        Other
+        Other,
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System.Data.SqlClient;
+using TrainExample_Ado.Net_CRUD_.EmployeeDto;
+using TrainExample_Ado.Net_CRUD_.Enum;
 using TrainExample_Ado.Net_CRUD_.Interfaces;
 
 namespace TrainExample_Ado.Net_CRUD_.Services
@@ -38,7 +40,7 @@ namespace TrainExample_Ado.Net_CRUD_.Services
             throw new NotImplementedException();
         }
 
-        public void EmployeeDelete()
+        public void EmployeeDelete(int EmployeeId)
         {
             throw new NotImplementedException();
         }
@@ -58,9 +60,35 @@ namespace TrainExample_Ado.Net_CRUD_.Services
             throw new NotImplementedException();
         }
 
-        public void InserEmployee()
+        public void InsertEmployee(Employeedto employeedto)
         {
-            throw new NotImplementedException();
+
+            using (SqlConnection connect = new SqlConnection())
+            {
+                string connectionString = $"Server = (localdb)\\MSSQLLocalDB; Database =Ishxona; Trusted_Connection = True;";
+                connect.ConnectionString = connectionString;
+                connect.Open();
+
+                string creatTableQuery = $"INSERT INTO Xodim(Name,Surname,Email,Login,Password,Status,Role)" +
+                    $"VALUES('{employeedto.Name}','{employeedto.Surname}','{employeedto.Email}','{employeedto.Login}','{employeedto.Password}','{Status.Created}','{employeedto.Role}')";
+
+                SqlCommand cmd = new SqlCommand(creatTableQuery, connect);
+
+                try
+                {
+                    using(SqlDataReader reader=cmd.ExecuteReader())
+                    {
+
+                    }
+                     Console.WriteLine("Insert Data in Table");
+
+                }
+                catch
+                {
+                    Console.WriteLine("Bu ma'lumot avvaldan bor");
+                }
+                
+            }
         }
     }
 }

@@ -1,13 +1,15 @@
-﻿namespace TrainExample_Ado.Net_CRUD_.Interfaces
+﻿using TrainExample_Ado.Net_CRUD_.EmployeeDto;
+
+namespace TrainExample_Ado.Net_CRUD_.Interfaces
 {
     public interface IEmployeeRepo
     {
-        public  void EmployeeCreated();
-        public void EmployeeDelete();
-        public void EmployeeUpdate();
-        public void EmployeeDeepDelete();
-        public void GetAll();
-        public void GetById();
-        public void InserEmployee();
+        void EmployeeCreated();
+        void EmployeeDelete(int EmployeeId);
+        void EmployeeUpdate();
+        void EmployeeDeepDelete();
+        void GetAll();
+        void GetById();
+        void InsertEmployee(Employeedto employeedto);
     }
 }
