@@ -15,3 +15,5 @@ info.Role=Role.Programmer;
 //employeeService.EmployeeDelete(2);
 //employeeService.EmployeeUpdate(1,info);
 
+//employeeService.EmployeeDeepDelete(2);
+

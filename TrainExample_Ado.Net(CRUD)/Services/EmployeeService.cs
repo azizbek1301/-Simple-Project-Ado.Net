@@ -36,9 +36,22 @@ namespace TrainExample_Ado.Net_CRUD_.Services
             }
         }
 
-        public void EmployeeDeepDelete()
+        public void EmployeeDeepDelete(int EmployeeId)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connect = new SqlConnection())
+            {
+                string connectionString = $"Server = (localdb)\\MSSQLLocalDB; Database =Ishxona; Trusted_Connection = True;";
+                connect.ConnectionString = connectionString;
+                connect.Open();
+                string query = $"Delete from Xodim where Id='{EmployeeId}'";
+                SqlCommand command = new SqlCommand(query, connect);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    Console.WriteLine("O'chirildi");
+                }
+
+
+            }
         }
 
         public void EmployeeDelete(int EmployeeId)
